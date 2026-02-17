@@ -1,203 +1,157 @@
 
+# Building Energy Efficiency Prediction using Machine Learning
 
-
-# 🏠 Building Energy Efficiency Prediction using Machine Learning
-
----
-
-### 🌿 *"Optimizing Energy for a Sustainable Future"*
-
-This project leverages **machine learning techniques** to predict the **heating load (HL)** and **cooling load (CL)** of buildings using architectural and environmental data.
-By accurately forecasting these loads, architects and engineers can design **energy-efficient buildings**, reduce **HVAC costs**, and promote **sustainability**.
+This project develops machine learning models to predict **Heating Load (HL)** and **Cooling Load (CL)** of buildings based on architectural and environmental features. The goal is to enable data-driven design decisions that reduce HVAC energy consumption, lower operational costs, and support sustainable construction practices.
 
 ---
 
-## 💡 Overview
+## Project Overview
 
-Energy consumption in buildings accounts for **nearly 40% of total global energy use**.
-Reducing this consumption is essential for sustainable growth, cost reduction, and environmental conservation.
+Energy efficiency in buildings is a critical global challenge. HVAC systems account for a significant portion of building energy usage, and accurate early-stage predictions of heating and cooling requirements can significantly improve design optimization.
 
-This project focuses on **predicting the energy loads of buildings** — particularly **Heating Load (HL)** and **Cooling Load (CL)** — during the design phase.
-These predictions help engineers and architects make **data-driven design decisions** to improve **building performance** and **energy efficiency**.
+This project builds regression models that learn the relationship between building characteristics (such as surface area, wall area, glazing area, height, etc.) and energy load demands.
 
----
-
-## ❓ Problem Statement
-
-The goal of this project is to develop a **predictive model** capable of estimating the **heating and cooling requirements** of a building based on its physical characteristics and orientation.
-
-This helps in:
-
-* Reducing excessive energy usage
-* Optimizing HVAC system design
-* Lowering operational costs
-* Enabling sustainable architectural practices
+The implementation follows a structured end-to-end machine learning workflow including preprocessing, model training, evaluation, and performance comparison.
 
 ---
 
-## 📊 Dataset Description
+## Problem Statement
 
-The dataset contains building parameters such as shape, size, materials, and glazing, which directly influence energy requirements.
+Given a set of building design parameters:
 
-| **Feature Type**            | **Description**                                                                                                                |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Input Variables**         | Relative Compactness, Surface Area, Wall Area, Roof Area, Overall Height, Orientation, Glazing Area, Glazing Area Distribution |
-| **Output Variables**        | Heating Load (HL), Cooling Load (CL)                                                                                           |
-| **Data Split**              | 67% Training — 33% Testing                                                                                                     |
-| **Normalization Technique** | Standard Scaler                                                                                                                |
+* Relative Compactness
+* Surface Area
+* Wall Area
+* Roof Area
+* Overall Height
+* Orientation
+* Glazing Area
+* Glazing Area Distribution
 
-**Dataset Goal:** Predict *Heating Load* and *Cooling Load* efficiently from architectural features.
+Predict:
 
----
+* Heating Load (HL)
+* Cooling Load (CL)
 
-## ⚙️ Methodology
-
-The complete workflow can be summarized in these stages:
-
-### 🧹 1. Data Preprocessing
-
-* Handled missing and inconsistent data
-* Normalized features using **StandardScaler**
-* Split dataset into training and testing subsets (67:33)
-
-### 🧠 2. Model Building
-
-Implemented multiple regression models:
-
-* Decision Tree Regressor 🌳
-* Random Forest Regressor 🌲
-* Gradient Boosting Regressor 🚀
-* Support Vector Regressor (SVR) 📈
-
-### 🧾 3. Model Evaluation
-
-Models were evaluated using:
-
-* **Root Mean Squared Error (RMSE)**
-* **R² Score**
-* **Cross-Validation (k-Fold, Shuffle Split)**
-
-### 📈 4. Model Selection
-
-The **Gradient Boosting Regressor** was chosen as the best-performing model with:
-
-* High accuracy
-* Low RMSE
-* Excellent generalization to unseen data
+This is a supervised regression problem with continuous outputs.
 
 ---
 
-## 🤖 Models Implemented
+## Machine Learning Approach
 
-| **Model**                   | **Train Accuracy (R²)** | **Test Accuracy (R²)** | **Remarks**                           |
-| --------------------------- | ----------------------- | ---------------------- | ------------------------------------- |
-| Decision Tree Regressor     | 1.000                   | 0.997                  | Overfitted the training data          |
-| Random Forest Regressor     | 0.999                   | 0.998                  | Excellent generalization              |
-| Gradient Boosting Regressor | 0.999                   | 0.999                  | Best overall performance              |
-| Support Vector Regressor    | 0.998                   | 0.996                  | Consistent but slightly less accurate |
+The project implements and compares multiple regression models:
 
-> ✅ **Gradient Boosting Regressor** provided the best balance between accuracy, interpretability, and robustness.
+* Decision Tree Regressor
+* Random Forest Regressor
+* Gradient Boosting Regressor
+* Support Vector Regressor
 
----
+The workflow includes:
 
-## 📈 Results & Discussion
-
-* **Gradient Boosting** achieved near-perfect accuracy for both heating and cooling loads.
-* **Random Forest** displayed great generalization and stability.
-* **Decision Tree** showed overfitting, requiring pruning or tuning.
-* **SVR** was robust but computationally expensive.
-
-**Key Insights:**
-
-* Energy prediction accuracy >99%
-* Building geometry & glazing area were top influencing factors
-* Ensemble methods (RF, GB) outperform single estimators
+1. Data loading and inspection
+2. Feature scaling using StandardScaler
+3. Train-test split (67% training, 33% testing)
+4. Model training
+5. Performance evaluation using R² and RMSE
+6. Model comparison and interpretation
 
 ---
 
-## 💻 Technologies Used
+## Key Findings
 
-| Category            | Tools / Libraries                                          |
-| ------------------- | ---------------------------------------------------------- |
-| **Language**        | Python 🐍                                                  |
-| **Libraries**       | `NumPy`, `Pandas`, `Matplotlib`, `Seaborn`, `Scikit-learn` |
-| **Environment**     | Jupyter Notebook / Google Colab                            |
-| **Version Control** | Git & GitHub                                               |
-| **Documentation**   | Markdown, LaTeX                                            |
+* Ensemble methods such as **Gradient Boosting** and **Random Forest** provide the strongest predictive performance.
+* Decision Trees achieve near-perfect training performance but can overfit without proper regularization.
+* Gradient Boosting demonstrates the best balance between accuracy and generalization.
+* Building geometry and glazing characteristics significantly influence heating and cooling demands.
 
----
-
-## 🧭 Flow Diagram
-
-```mermaid
-graph TD
-A[Data Collection] --> B[Feature Engineering]
-B --> C[Normalization]
-C --> D[Train-Test Split]
-D --> E[Model Training]
-E --> F[Model Evaluation]
-F --> G[Performance Comparison]
-G --> H[Prediction of Heating & Cooling Loads]
-H --> I[Result Interpretation]
-```
+The results show that structured tabular regression models can achieve very high predictive accuracy on this dataset.
 
 ---
 
-## 🚀 Future Enhancements
+## Evaluation Metrics
 
-* 🔹 Integrate **Deep Learning models** (e.g., ANN, CNN) for feature learning
-* 🔹 Include **real-world energy datasets** with climate & occupancy data
-* 🔹 Develop a **web dashboard** for live energy efficiency prediction
-* 🔹 Extend to **carbon footprint estimation** for green certification support
+The following metrics are used to evaluate performance:
 
----
+* R² Score (variance explained by the model)
+* Root Mean Squared Error (RMSE)
+* Cross-validation for robustness
 
-**Under the Guidance of:**
-🎓 *Prof. Priti Chakurkar*
-*School of Computer Engineering and Technology,
-MIT World Peace University, Pune, India*
+These metrics ensure the models are both accurate and stable.
 
 ---
 
-## 📚 References
+## Technology Stack
 
-1. Seyedzadeh, S. *et al.* (2018). *Machine learning for estimation of building energy consumption and performance.* Visualization in Engineering, 6(1), 1–20.
-   [DOI:10.1186/s40327-018-0064-7](https://doi.org/10.1186/s40327-018-0064-7)
-
-2. Tien, P. W. *et al.* (2022). *Machine Learning and Deep Learning Methods for Enhancing Building Energy Efficiency and Indoor Environmental Quality.*
-   [Energy and AI, 10, 100198](https://doi.org/10.1016/j.egyai.2022.100198)
-
-3. Izonin, I. *et al.* (2023). *Machine learning for predicting energy efficiency of buildings: A small data approach.*
-   [Procedia Computer Science, 231, 72–77](https://doi.org/10.1016/j.procs.2023.12.173)
-
----
-
-## 🗂 Repository Structure
-
-```
-Building-Energy-Efficiency/
-│
-├── data/                     # Dataset files
-├── notebooks/                # Jupyter notebooks for training & testing
-├── models/                   # Trained ML models
-├── reports/                  # Project report and visuals
-├── README.md                 # Project documentation
-└── requirements.txt           # Python dependencies
-```
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* Matplotlib
+* Seaborn
+* Jupyter Notebook
 
 ---
 
-## 🌟 Key Takeaways
+## Repository Structure
 
-* Data-driven ML models can **drastically improve energy-efficient building design**
-* Ensemble regressors (like Gradient Boosting) offer **high accuracy and generalization**
-* The project supports the **global push toward sustainable architecture** and smart energy use
+The repository includes:
+
+* Dataset files
+* Jupyter notebook with full ML pipeline
+* Model evaluation results
+* Documentation
+
+---
+
+## How to Run
+
+1. Clone the repository
+2. Install dependencies listed in requirements.txt
+3. Open the notebook in Jupyter
+4. Run all cells to reproduce preprocessing, training, and evaluation
 
 ---
 
-### ⭐ If you found this project interesting, please give it a **star** on GitHub!
+## Skills Demonstrated
 
-Together, let’s make our buildings — and our planet — more energy-efficient 🌏💚
+This project highlights competencies relevant to Machine Learning, AI, and Software Engineering roles:
+
+* Supervised regression modeling
+* Ensemble learning techniques
+* Feature scaling and preprocessing
+* Model evaluation and comparison
+* Data-driven interpretation of results
+* Structured ML pipeline design
 
 ---
+
+## Why This Project Matters
+
+This project demonstrates the ability to:
+
+* Translate a real-world sustainability problem into a machine learning task
+* Apply ensemble learning methods effectively
+* Evaluate models rigorously
+* Interpret model outputs for practical insights
+
+It reflects practical experience in applying machine learning techniques to structured tabular datasets in an energy optimization context.
+
+---
+
+## Future Improvements
+
+Potential extensions include:
+
+* Incorporating climate or occupancy data for dynamic load prediction
+* Deploying the trained model via a web API
+* Adding SHAP-based model explainability
+* Comparing performance with neural network regressors
+
+---
+
+## Author
+
+Atharva Thorat
+Master’s in Computer Science – University of Southern California
+Interested in Machine Learning, AI Systems, and Scalable Engineering Solutions
 
